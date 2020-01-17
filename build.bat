@@ -1,7 +1,6 @@
 @echo off
 REM VARIABLES
 set LIBPATH=..
-
 set RENDERER=SOKOL_GLCORE33 
 
 
@@ -13,7 +12,7 @@ REM #################################################
 REM CLONE/UPDATE SOKOL
 @echo on
 git clone https://github.com/floooh/sokol sokol_source
-cd c_sokol
+cd sokol_source
 git pull
 cd ..
 
@@ -26,3 +25,6 @@ lib /ERRORREPORT /OUT:%LIBPATH%/sokol_gfx.lib gfx/sokol_gfx.obj opengl32.lib gdi
 
 cl /D%RENDERER% /Z7 /c /EHa  time/time.c /Fotime/sokol_time.obj 
 lib /ERRORREPORT /OUT:%LIBPATH%/sokol_time.lib time/sokol_time.obj
+
+cl /D%RENDERER% /Z7 /c /EHa  fetch/fetch.c /Fofetch/sokol_fetch.obj 
+lib /ERRORREPORT /OUT:%LIBPATH%/sokol_fetch.lib fetch/sokol_fetch.obj
